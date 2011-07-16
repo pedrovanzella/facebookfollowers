@@ -28,8 +28,10 @@ a {
 }
 
 #flash_notice, #flash_error, #flash_alert {
+  clear: both;
   padding: 5px 8px;
   margin: 10px 0;
+  width: 400px;
 }
 
 #flash_notice {
@@ -72,6 +74,11 @@ a {
 
 .error_messages ul {
   margin: 0;
+}
+
+#user_nav {
+  float: right;
+  margin-bottom: 10px;
 }
 
 .authentications {
