@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 gem 'twitter'
 gem 'facebooker2'
+gem 'omniauth'
 
 group :development do
   gem 'nifty-generators'
