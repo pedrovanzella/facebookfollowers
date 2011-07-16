@@ -4,7 +4,10 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    render :text => request.env["omniauth.auth"].to_yaml # just so we can see what's going on
+    auth = request.env["omniauth.auth"]
+    current_user.authentications.create(:provider => auth['provider'], :uid => auth['uid'])
+    flash[:notice] = "Authentication successful."
+    redirect_to authentications_url
   end
 
   def destroy
