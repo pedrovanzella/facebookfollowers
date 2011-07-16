@@ -8,8 +8,8 @@ gem 'rails', '3.0.9'
 gem 'sqlite3'
 
 gem 'twitter'
-gem 'facebooker2'
-gem 'omniauth'
+gem 'fb_graph'
+gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 
 group :development do
   gem 'nifty-generators'
