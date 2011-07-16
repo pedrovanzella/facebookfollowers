@@ -1,5 +1,6 @@
 Facebookfollowers::Application.routes.draw do
   match 'auth/:provider/callback' => 'authentications#create'
+  match 'auth/failure' => 'authentications#failure'
   resources :authentications
 
   devise_for :users
