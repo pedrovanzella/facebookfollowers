@@ -7,9 +7,10 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 
+gem 'devise'
+gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 gem 'twitter'
 gem 'fb_graph'
-gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
 
 group :development do
   gem 'nifty-generators'

@@ -69,8 +69,13 @@ GEM
     addressable (2.2.6)
     arel (2.0.10)
     attr_required (0.0.3)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     crack (0.1.8)
+    devise (1.4.2)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faraday (0.7.4)
@@ -102,6 +107,7 @@ GEM
     oauth2 (0.5.0.rc1)
       faraday (>= 0.6.1, < 0.8)
       multi_json (~> 1.0.0)
+    orm_adapter (0.0.5)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -150,11 +156,14 @@ GEM
       mash
       oauth
     tzinfo (0.3.29)
+    warden (1.0.4)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  devise
   fb_graph
   nifty-generators
   omniauth!
