@@ -97,6 +97,7 @@ GEM
       treetop (~> 1.4.8)
     mash (0.1.1)
     mime-types (1.16)
+    mocha (0.9.12)
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.2)
@@ -165,6 +166,7 @@ PLATFORMS
 DEPENDENCIES
   devise
   fb_graph
+  mocha
   nifty-generators
   omniauth!
   rails (= 3.0.9)
