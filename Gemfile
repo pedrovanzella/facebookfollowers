@@ -9,7 +9,7 @@ gem 'sqlite3'
 
 gem 'devise'
 gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
-gem 'twitter'
+gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
 gem 'fb_graph'
 
 group :development do
