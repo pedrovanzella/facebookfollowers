@@ -1,32 +1,73 @@
-<% if current_user %>
-  <% if current_user.twitter %>
-    <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
-  <% end %>
-
-  <% if current_user.facebook %>
-    <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
-  <% end %>
-
-  <div id="facebook-friends">
-    <table>
-      <th> Facebook-only Friends </th>
-      <% @facebook_friends.each do |ff| %>
-        <tr>
-          <td> <img src="<%= ff.picture %>" width = 50 height = 50 /> </td>
-          <td> <%= ff.name %> </td>
-        </tr>
+<% unless current_user && current_user.twitter && current_user.facebook %>
+  <% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p><strong>You can sign in to this account using:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
       <% end %>
-    </table>
-  </div>
-  <div id="twitter-friends">
-    <table>
-      <th> Twitter-only Friends </th>
-      <% @twitter_friends.each do |tf| %>
-        <tr>
-          <td> <img src="<%= tf.profile_image_url %>" width = 50 height = 50 /></td>
-          <td> <%= tf.name %> </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+  <p><strong>Add another service to sign in with:</strong></p>
+<% else %>
+  <p><strong>To use the service, please log in with all below:</strong></p>
+<% end %>
+
+<% unless current_user.twitter %>
+  <a href="/auth/twitter" class="auth_provider">
+    <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+    Twitter
+  </a>
+<% end %>
+<% unless current_user.facebook %>
+  <a href="/auth/facebook" class="auth_provider">
+    <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+    Facebook
+  </a>
+<% end %>
+<div class="clear"></div>
+<% else %>
+  <table>
+    <tr>
+      <td align=top>
+        <% if @twitter_friends %>
+          <div id="twitter-friends">
+            <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
+            <table>
+              <th> Twitter-only Friends </th>
+              <% @twitter_friends.each do |tf| %>
+                <tr>
+                  <td> <img src="<%= tf.profile_image_url %>" width = 50 height = 50 /></td>
+                  <td> <%= tf.name %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </td>
+
+      <td align=top>
+        <% if @facebook_friends %>
+          <div id="facebook-friends">
+            <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
+            <table>
+              <th> Facebook-only Friends </th>
+              <% @facebook_friends.each do |ff| %>
+                <tr>
+                  <td> <img src="<%= ff.picture %>" width = 50 height = 50 /> </td>
+                  <td> <%= ff.name %> </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  </table>
 <% end %>
