@@ -3,7 +3,6 @@
     <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
   <% end %>
   <% if current_user.facebook %>
-    <% current_user.facebook.fetch %>
-    <p><strong> Facebook: </strong> <%= current_user.facebook.name rescue nil %></p>
+    <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
   <% end %>
 <% end %>
