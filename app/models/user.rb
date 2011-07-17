@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    return nil unless self.authentications.find_by_provider('facebook')
-    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch
+#    return nil unless self.authentications.find_by_provider('facebook')
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch rescue nil
   end
 
   def twitter
