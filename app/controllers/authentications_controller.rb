@@ -24,10 +24,6 @@ class AuthenticationsController < ApplicationController
         redirect_to authentications_url
       end
     end
-
-    current_user.authentications.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    flash[:notice] = "Authentication successful."
-    redirect_to authentications_url
   end
 
   def destroy
