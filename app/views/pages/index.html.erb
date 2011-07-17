@@ -1,34 +1,32 @@
 <% if current_user %>
   <% if current_user.twitter %>
     <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
-    <table>
-    <th> Twitter Friends </th>
-    <% i = 0 %>
-    <% current_user.twitter.friends.users.each do |friend| %>
-      <% i += 1 %>
-      <tr>
-        <td> <%= i %> </td>
-        <td> <img src = "<%= friend.profile_image_url %>" height = 50 width = 50> </td>
-        <td> <%= friend.name %> </td>
-      </tr>
-    <% end %>
-  </table>
-
   <% end %>
+
   <% if current_user.facebook %>
     <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
-    <table>
-    <th> Facebook Friends </th>
-    <% i = 0 %>
-    <% current_user.facebook.fetch.friends.each do |friend| %>
-      <% i += 1 %>
-      <tr>
-        <td> <%= i %> </td>
-        <td> <img src = "<%= friend.picture %>" height = 50 width = 50 > </td>
-        <td> <%= friend.name %> </td>
-        <td> <%= friend.fetch.email %> </td>
-      </tr>
-    <% end %>
-  </table>
   <% end %>
+
+  <div id="facebook-friends">
+    <table>
+      <th> Facebook-only Friends </th>
+      <% @facebook_friends.each do |ff| %>
+        <tr>
+          <td> <img src="<%= ff.picture %>" width = 50 height = 50 /> </td>
+          <td> <%= ff.name %> </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div id="twitter-friends">
+    <table>
+      <th> Twitter-only Friends </th>
+      <% @twitter_friends.each do |tf| %>
+        <tr>
+          <td> <img src="<%= tf.profile_image_url %>" width = 50 height = 50 /></td>
+          <td> <%= tf.name %> </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 <% end %>
