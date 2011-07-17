@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Signed in sucessfully"
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
-      current_user.authentications.create!(:provider => omniauth["provider"], :uid => omniauth["uid"])
+      current_user.authentications.create!(hash_from_omniauth(omniauth))
       flash[:notice] = "Authentication Successful"
       redirect_to authentications_url
     else
@@ -40,4 +40,16 @@ class AuthenticationsController < ApplicationController
     flash[:error] = "[Authentications#failure] Authentication failed"
     redirect_to authentications_url
   end
+
+private
+
+  def hash_from_omniauth(omniauth)
+    {
+      :provider => omniauth['provider'],
+      :uid => omniauth['uid'],
+      :token => (omniauth['credentials']['token'] rescue nil),
+      :secret => (omniauth['credentials']['secret'] rescue nil)
+    }
+  end
+
 end
