@@ -20,8 +20,8 @@ class AuthenticationsController < ApplicationController
         flash[:notice] = "User logged in"
         sign_in_and_redirect(:user, user)
       else
-        flash[:error] = "Oh snap! Something went wrong!"
-        redirect_to authentications_url
+        session[:omniauth] = omniauth.except('extra')
+        redirect_to new_user_registration_url
       end
     end
   end
