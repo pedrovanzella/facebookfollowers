@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def apply_facebook(omniauth)
     if (extra = omniauth['extra']['user_hash'] rescue false)
-      self.email |= (extra['email'] rescue '')
+      self.email ||= (extra['email'] rescue '')
     end
   end
 
