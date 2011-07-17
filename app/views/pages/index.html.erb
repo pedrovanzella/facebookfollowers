@@ -5,4 +5,34 @@
   <% if current_user.facebook %>
     <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
   <% end %>
+
+  <%= current_user.twitter.friends.users.first %>
+
+  <table>
+    <th> Twitter Friends </th>
+    <% i = 0 %>
+    <% current_user.twitter.friends.users.each do |friend| %>
+      <% i += 1 %>
+      <tr>
+        <td> <%= i %> </td>
+        <td> <img src = "<%= friend.profile_image_url %>" height = 50 width = 50> </td>
+        <td> <%= friend.name %> </td>
+      </tr>
+    <% end %>
+  </table>
+
+
+  <%= current_user.facebook.fetch.friends.first.methods %>
+  <table>
+    <th> Facebook Friends </th>
+    <% i = 0 %>
+    <% current_user.facebook.fetch.friends.each do |friend| %>
+      <% i += 1 %>
+      <tr>
+        <td> <%= i %> </td>
+        <td> <img src = "<%= friend.picture %>" height = 50 width = 50 > </td>
+        <td> <%= friend.name %> </td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
