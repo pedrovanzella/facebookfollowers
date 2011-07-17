@@ -1,8 +1,9 @@
 <% if current_user %>
   <% if current_user.twitter %>
-    <p><strong> Twitter: </strong> <%= current_user.twitter.user.name %></p>
+    <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
   <% end %>
   <% if current_user.facebook %>
-    <p><strong> Facebook: </strong> <%= current_user.facebook.name %></p>
+    <% current_user.facebook.fetch %>
+    <p><strong> Facebook: </strong> <%= current_user.facebook.name rescue nil %></p>
   <% end %>
 <% end %>

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def facebook
-    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch rescue nil
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token) rescue nil
   end
 
   def twitter
@@ -38,16 +38,16 @@ class User < ActiveRecord::Base
   protected
 
   def apply_facebook(omniauth)
-    if (extra = omniauth['extra']['user_hash'] rescue false)
-      self.email ||= (extra['email'] rescue '')
-    end
+   # if (extra = omniauth['extra']['user_hash'] rescue false)
+   #   self.email ||= (extra['email'] rescue '')
+   # end
   end
 
   def apply_twitter(omniauth)
-    if (extra = omniauth['extra']['user_hash'] rescue false)
+   # if (extra = omniauth['extra']['user_hash'] rescue false)
       # Example fetching extra data. Needs migration to User model:
       # self.firstname = (extra['name'] rescue '')
-    end
+   # end
   end
 
   def hash_from_omniauth(omniauth)
