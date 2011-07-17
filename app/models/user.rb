@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   def password_required?
-    false
+    (authentications.empty? || !password.blank?) && super
   end
 
   def apply_omniauth(omniauth)
