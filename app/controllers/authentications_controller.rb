@@ -20,7 +20,11 @@ class AuthenticationsController < ApplicationController
         flash[:notice] = "User logged in"
         sign_in_and_redirect(:user, user)
       else
-        session[:omniauth] = omniauth.except('extra')
+        if omniauth['provider'] == 'twitter'
+          session[:omniauth] = omniauth.except('extra')
+        else
+          session[:omniauth] = omniauth
+        end
         redirect_to new_user_registration_url
       end
     end
