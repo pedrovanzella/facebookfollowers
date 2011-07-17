@@ -8,8 +8,8 @@ gem 'rails', '3.0.9'
 gem 'sqlite3'
 
 gem 'devise'
-gem 'omniauth', :git => 'https://github.com/intridea/omniauth.git'
-gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
+gem 'omniauth', '~> 0.2.6'
+gem 'twitter', '~> 1.5.0'
 gem 'fb_graph'
 
 group :development do

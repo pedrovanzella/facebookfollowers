@@ -13,3 +13,7 @@ Twitter.configure do |config|
   config.oauth_token = '14456192-u5pBYfzlSNkgkrSFC2wAHADOMiNe6V4UrSD1tZP4'
   config.oauth_token_secret = 'kbZLVH50BZhdeseqb0Zo0rh1pSyqmYw1AdCBbJr8wM'
 end
+
+OmniAuth.config.on_failure do |env|
+  [200, {}, [env['omniauth.error'].inspect]]
+end

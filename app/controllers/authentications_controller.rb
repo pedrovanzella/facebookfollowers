@@ -37,7 +37,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def failure
-    flash[:error] = "Authentication failed"
+    flash[:error] = "[Authentications#failure] Authentication failed"
     redirect_to authentications_url
   end
 end
