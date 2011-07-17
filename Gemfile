@@ -12,6 +12,8 @@ gem 'omniauth', '~> 0.2.6'
 gem 'twitter', '~> 1.5.0'
 gem 'fb_graph'
 
+gem 'unicorn'
+
 group :development do
   gem 'nifty-generators'
 end

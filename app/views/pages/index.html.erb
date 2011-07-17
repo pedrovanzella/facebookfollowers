@@ -1,14 +1,7 @@
 <% if current_user %>
   <% if current_user.twitter %>
     <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
-  <% end %>
-  <% if current_user.facebook %>
-    <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
-  <% end %>
-
-  <%= current_user.twitter.friends.users.first %>
-
-  <table>
+    <table>
     <th> Twitter Friends </th>
     <% i = 0 %>
     <% current_user.twitter.friends.users.each do |friend| %>
@@ -21,9 +14,10 @@
     <% end %>
   </table>
 
-
-  <%= current_user.facebook.fetch.friends.first.methods %>
-  <table>
+  <% end %>
+  <% if current_user.facebook %>
+    <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
+    <table>
     <th> Facebook Friends </th>
     <% i = 0 %>
     <% current_user.facebook.fetch.friends.each do |friend| %>
@@ -32,7 +26,9 @@
         <td> <%= i %> </td>
         <td> <img src = "<%= friend.picture %>" height = 50 width = 50 > </td>
         <td> <%= friend.name %> </td>
+        <td> <%= friend.fetch.email %> </td>
       </tr>
     <% end %>
   </table>
+  <% end %>
 <% end %>
