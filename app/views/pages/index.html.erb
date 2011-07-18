@@ -33,41 +33,33 @@
 <% end %>
 <div class="clear"></div>
 <% else %>
-  <table>
-    <tr>
-      <td align=top>
-        <% if @twitter_friends %>
-          <div id="twitter-friends">
-            <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
-            <table>
-              <th> Twitter-only Friends </th>
-              <% @twitter_friends.each do |tf| %>
-                <tr>
-                  <td> <img src="<%= tf.profile_image_url %>" width = 50 height = 50 /></td>
-                  <td> <%= tf.name %> </td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
+  <% if @twitter_friends %>
+    <div id="twitter-friends">
+      <p><strong> Twitter: </strong> <%= current_user.twitter.user.name rescue nil %></p>
+      <table>
+        <th> Twitter-only Friends </th>
+        <% @twitter_friends.each do |tf| %>
+          <tr>
+            <td> <img src="<%= tf.profile_image_url %>" width = 50 height = 50 /></td>
+            <td> <%= tf.name %> </td>
+          </tr>
         <% end %>
-      </td>
+      </table>
+    </div>
+  <% end %>
 
-      <td align=top>
-        <% if @facebook_friends %>
-          <div id="facebook-friends">
-            <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
-            <table>
-              <th> Facebook-only Friends </th>
-              <% @facebook_friends.each do |ff| %>
-                <tr>
-                  <td> <img src="<%= ff.picture %>" width = 50 height = 50 /> </td>
-                  <td> <%= ff.name %> </td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
+  <% if @facebook_friends %>
+    <div id="facebook-friends">
+      <p><strong> Facebook: </strong> <%= current_user.facebook.fetch.name rescue nil %></p>
+      <table>
+        <th> Facebook-only Friends </th>
+        <% @facebook_friends.each do |ff| %>
+          <tr>
+            <td> <img src="<%= ff.picture %>" width = 50 height = 50 /> </td>
+            <td> <%= ff.name %> </td>
+          </tr>
         <% end %>
-      </td>
-    </tr>
-  </table>
+      </table>
+    </div>
+  <% end %>
 <% end %>
