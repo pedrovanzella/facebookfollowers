@@ -9,8 +9,10 @@
   </head>
   <body>
     <div id="container">
+      <div id="home_link">
+        <%= link_to "Home", root_path %>
+      </div>
       <div id="user_nav">
-        <%= link_to "HOME", root_path %>
         <% if user_signed_in? %>
           <%= link_to "Authentications", authentications_path %>
           Signed in as <%= current_user.email %>. Not you?
